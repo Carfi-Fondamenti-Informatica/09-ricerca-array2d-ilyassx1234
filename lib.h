@@ -1,33 +1,17 @@
-#include <iostream>
 #include "lib.h"
-using namespace std;
 
-int main() {
-    char lista[10][20];
-    char target[20];
-    int pos = 0;
-
+bool cerca(char lista[10][20], int &posizione, char target[]){
     for(int i=0;i<10;i++){
-        for(int j=0;j<20;j++) {
-            target[j] = ' ';
-            lista[i][j] = ' ';
+        for(int j=0;j<20;j++){
+            if(lista[i][j] != target[j]){
+                j = 20;
+            }else{
+              if(j==19){
+                  posizione = i;
+                  return true;
+              }
+            }
         }
     }
-
-    for(int i=0;i<10;i++){
-        cin >> lista[i];
-    }
-
-    cin >> target;
-    if(cerca(lista,pos,target)){
-        cout << pos;
-    }else{
-        cout << "non presente";
-    }
-
-
-
-
-
-    return 0;
+    return false;
 }
